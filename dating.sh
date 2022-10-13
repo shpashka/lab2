@@ -1,13 +1,14 @@
-t=".txt"
+format=".txt"
 k=2
-for f in *"$t";
+for f in *"$format";
 do
-c=$(stat -c '%w' "$f")
-if [ -f "$c$t" ];
+date=$(stat -c '%y' "$f")
+fdate=${date:0:16};
+if [ -f "$fdate$format" ];
 then
-mv "$f" "$c^$k^$t"
+mv "$f" "$fdate^$k^$format"
 k=$(($k+1));
 else
-mv "$f" "$c$t"
+mv "$f" "$fdate$format"
 fi;
 done
